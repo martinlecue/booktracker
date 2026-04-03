@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BookTracker App — Ta bibliothèque personnelle</title>
+<meta name="description" content="BookTracker — Suis tes lectures, construis une habitude, explore ta bibliothèque.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;0,9..144,900;1,9..144,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sky: #daeeff;
+    --sky2: #b8d9f7;
+    --orange: #FF6B35;
+    --orange-light: #FF9A6C;
+    --blue: #0288D1;
+    --purple: #9333EA;
+    --dark: #0d1b2e;
+    --mid: #2a4a6e;
+    --muted: #5a7a9e;
+    --white: #ffffff;
+    --radius: 20px;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: linear-gradient(160deg, var(--sky) 0%, var(--sky2) 100%);
+    min-height: 100vh;
+    color: var(--dark);
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 48px;
+    background: rgba(218, 238, 255, 0.72);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255,255,255,0.5);
+  }
+  .nav-logo {
+    font-family: 'Fraunces', serif;
+    font-weight: 700; font-size: 20px;
+    color: var(--dark); text-decoration: none;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .nav-logo .dot { width: 10px; height: 10px; background: var(--orange); border-radius: 50%; display: inline-block; }
+  .nav-right { display: flex; align-items: center; gap: 24px; }
+  .lang-toggle {
+    display: flex; align-items: center; gap: 4px;
+    background: rgba(255,255,255,0.6); border-radius: 100px;
+    padding: 4px; border: none; cursor: pointer;
+  }
+  .lang-btn {
+    padding: 5px 12px; border-radius: 100px; border: none;
+    font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500;
+    cursor: pointer; transition: all .2s;
+    background: transparent; color: var(--muted);
+  }
+  .lang-btn.active { background: var(--white); color: var(--dark); box-shadow: 0 1px 4px rgba(0,0,0,.08); }
+  .nav-cta {
+    background: var(--orange); color: white;
+    padding: 10px 22px; border-radius: 100px;
+    font-size: 14px; font-weight: 500;
+    text-decoration: none; transition: all .2s;
+    display: flex; align-items: center; gap: 6px;
+  }
+  .nav-cta:hover { background: #e55a28; transform: translateY(-1px); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    padding: 120px 24px 80px;
+    text-align: center;
+    position: relative;
+  }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(255,255,255,0.7); border: 1px solid rgba(255,255,255,0.9);
+    border-radius: 100px; padding: 6px 16px;
+    font-size: 13px; color: var(--mid); font-weight: 500;
+    margin-bottom: 32px;
+    animation: fadeUp .6s ease both;
+  }
+  .hero-badge span { color: var(--orange); }
+  .hero h1 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(52px, 8vw, 96px);
+    font-weight: 900; line-height: 1.0;
+    color: var(--dark); margin-bottom: 24px;
+    animation: fadeUp .6s .1s ease both;
+  }
+  .hero h1 em { font-style: italic; color: var(--orange); }
+  .hero p {
+    font-size: clamp(16px, 2.5vw, 20px);
+    color: var(--mid); max-width: 520px;
+    line-height: 1.6; margin-bottom: 44px;
+    animation: fadeUp .6s .2s ease both;
+  }
+  .hero-ctas {
+    display: flex; align-items: center; gap: 16px;
+    flex-wrap: wrap; justify-content: center;
+    animation: fadeUp .6s .3s ease both;
+  }
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--dark); color: white;
+    padding: 16px 32px; border-radius: 100px;
+    font-size: 16px; font-weight: 500; text-decoration: none;
+    transition: all .2s;
+  }
+  .btn-primary:hover { background: var(--mid); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(13,27,46,.2); }
+  .btn-primary svg { width: 18px; height: 18px; }
+  .btn-secondary {
+    display: inline-flex; align-items: center; gap: 8px;
+    color: var(--mid); font-size: 15px; font-weight: 500;
+    text-decoration: none; padding: 16px 20px;
+    transition: color .2s;
+  }
+  .btn-secondary:hover { color: var(--dark); }
+
+  /* BOOKS VISUAL */
+  .books-visual {
+    margin-top: 72px;
+    position: relative; display: flex; justify-content: center;
+    animation: fadeUp .6s .4s ease both;
+  }
+  .book {
+    width: 90px; height: 140px; border-radius: 8px;
+    position: relative; box-shadow: 0 20px 48px rgba(13,27,46,.15);
+    transition: transform .3s;
+  }
+  .book:hover { transform: translateY(-8px); }
+  .book-spine {
+    position: absolute; left: 0; top: 0; bottom: 0;
+    width: 14px; border-radius: 8px 0 0 8px;
+  }
+  .book-lines { padding: 20px 18px 20px 24px; }
+  .book-line {
+    height: 6px; border-radius: 3px;
+    background: rgba(255,255,255,0.45); margin-bottom: 8px;
+  }
+  .book-line.short { width: 60%; }
+  .book-line.medium { width: 80%; }
+  .book1 { background: linear-gradient(160deg, #FF9A6C, #FF6B35); transform: rotate(-4deg) translateY(10px); }
+  .book1 .book-spine { background: #D44F1E; }
+  .book2 { background: linear-gradient(160deg, #D8A4FF, #9333EA); transform: rotate(0deg) translateY(-4px); width: 100px; height: 156px; z-index: 2; }
+  .book2 .book-spine { background: #6B17C2; }
+  .book3 { background: linear-gradient(160deg, #4FC3F7, #0288D1); transform: rotate(4deg) translateY(6px); }
+  .book3 .book-spine { background: #0267A0; }
+  .books-shadow {
+    position: absolute; bottom: -16px; left: 50%; transform: translateX(-50%);
+    width: 240px; height: 20px;
+    background: radial-gradient(ellipse, rgba(13,27,46,.2) 0%, transparent 70%);
+  }
+
+  /* FEATURES */
+  .section { padding: 100px 24px; max-width: 1100px; margin: 0 auto; }
+  .section-label {
+    font-size: 12px; font-weight: 500; letter-spacing: .12em;
+    text-transform: uppercase; color: var(--orange);
+    margin-bottom: 16px;
+  }
+  .section-title {
+    font-family: 'Fraunces', serif; font-size: clamp(36px, 5vw, 58px);
+    font-weight: 700; color: var(--dark); line-height: 1.1;
+    margin-bottom: 64px; max-width: 600px;
+  }
+  .features-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  }
+  .feature-card {
+    background: rgba(255,255,255,0.6);
+    border: 1px solid rgba(255,255,255,0.85);
+    border-radius: var(--radius); padding: 32px;
+    backdrop-filter: blur(10px);
+    transition: transform .2s, box-shadow .2s;
+  }
+  .feature-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(13,27,46,.08); }
+  .feature-icon {
+    width: 48px; height: 48px; border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px; margin-bottom: 20px;
+  }
+  .feature-card h3 {
+    font-family: 'Fraunces', serif; font-weight: 700;
+    font-size: 20px; color: var(--dark); margin-bottom: 10px;
+  }
+  .feature-card p { font-size: 15px; color: var(--muted); line-height: 1.6; }
+  .icon-orange { background: linear-gradient(135deg, #ffe4d6, #ffd0bc); }
+  .icon-blue { background: linear-gradient(135deg, #d0eeff, #b8e0ff); }
+  .icon-purple { background: linear-gradient(135deg, #eed6ff, #e0bcff); }
+  .icon-green { background: linear-gradient(135deg, #d0ffe4, #b8ffd0); }
+  .icon-yellow { background: linear-gradient(135deg, #fff3d0, #ffe8b8); }
+  .icon-teal { background: linear-gradient(135deg, #d0f5ff, #b8edff); }
+
+  /* PREMIUM */
+  .premium-section {
+    padding: 100px 24px;
+  }
+  .premium-inner {
+    max-width: 1100px; margin: 0 auto;
+    background: var(--dark);
+    border-radius: 32px; padding: 72px;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 64px;
+    align-items: center;
+  }
+  .premium-inner h2 {
+    font-family: 'Fraunces', serif; font-weight: 900;
+    font-size: clamp(36px, 4vw, 52px); line-height: 1.1;
+    color: white; margin-bottom: 24px;
+  }
+  .premium-inner h2 em { font-style: italic; color: var(--orange-light); }
+  .premium-inner p { color: rgba(255,255,255,0.6); font-size: 16px; line-height: 1.7; margin-bottom: 40px; }
+  .premium-list { list-style: none; display: flex; flex-direction: column; gap: 16px; margin-bottom: 40px; }
+  .premium-list li {
+    display: flex; align-items: center; gap: 12px;
+    color: rgba(255,255,255,0.85); font-size: 15px;
+  }
+  .premium-list li::before {
+    content: ''; width: 20px; height: 20px; border-radius: 50%;
+    background: var(--orange); flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E");
+    background-size: 12px; background-repeat: no-repeat; background-position: center;
+  }
+  .premium-pricing {
+    display: flex; gap: 16px; flex-direction: column;
+  }
+  .price-card {
+    background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 16px; padding: 24px;
+  }
+  .price-card.featured { background: var(--orange); border-color: transparent; }
+  .price-card .price { font-family: 'Fraunces', serif; font-size: 36px; font-weight: 900; color: white; }
+  .price-card .period { font-size: 13px; color: rgba(255,255,255,0.7); margin-top: 2px; }
+  .price-card .label { font-size: 13px; color: rgba(255,255,255,0.5); margin-bottom: 8px; text-transform: uppercase; letter-spacing: .08em; }
+
+  /* FOOTER */
+  footer {
+    padding: 48px 48px 40px;
+    display: flex; align-items: center; justify-content: space-between;
+    border-top: 1px solid rgba(255,255,255,0.5);
+    flex-wrap: wrap; gap: 20px;
+  }
+  footer .footer-logo {
+    font-family: 'Fraunces', serif; font-weight: 700; font-size: 18px;
+    color: var(--dark); text-decoration: none;
+  }
+  footer .footer-links { display: flex; gap: 32px; }
+  footer .footer-links a { font-size: 14px; color: var(--muted); text-decoration: none; transition: color .2s; }
+  footer .footer-links a:hover { color: var(--dark); }
+  footer .footer-copy { font-size: 13px; color: var(--muted); }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 768px) {
+    nav { padding: 16px 20px; }
+    .features-grid { grid-template-columns: 1fr; }
+    .premium-inner { grid-template-columns: 1fr; padding: 40px 28px; gap: 40px; }
+    footer { flex-direction: column; align-items: flex-start; padding: 40px 24px; }
+    footer .footer-links { flex-wrap: wrap; gap: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo">
+    <span class="dot"></span>
+    BookTracker
+  </a>
+  <div class="nav-right">
+    <div class="lang-toggle">
+      <button class="lang-btn active" onclick="setLang('fr')">FR</button>
+      <button class="lang-btn" onclick="setLang('en')">EN</button>
+    </div>
+    <a href="#" class="nav-cta">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/><path d="M8 12l3 3 5-5"/></svg>
+      <span data-fr="Télécharger" data-en="Download">Télécharger</span>
+    </a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">
+    <span>✦</span>
+    <span data-fr="Disponible sur l'App Store" data-en="Available on the App Store">Disponible sur l'App Store</span>
+  </div>
+  <h1>
+    <span data-fr="Lis plus.<br><em>Retiens tout.</em>" data-en="Read more.<br><em>Remember everything.</em>">Lis plus.<br><em>Retiens tout.</em></span>
+  </h1>
+  <p data-fr="BookTracker est ton compagnon de lecture personnel. Suis ta progression, construis une habitude et explore ta bibliothèque comme jamais." data-en="BookTracker is your personal reading companion. Track your progress, build a reading habit and explore your library like never before.">
+    BookTracker est ton compagnon de lecture personnel. Suis ta progression, construis une habitude et explore ta bibliothèque comme jamais.
+  </p>
+  <div class="hero-ctas">
+    <a href="#" class="btn-primary">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+      <span data-fr="App Store" data-en="App Store">App Store</span>
+    </a>
+    <a href="#features" class="btn-secondary" data-fr="Découvrir les fonctionnalités →" data-en="Explore features →">Découvrir les fonctionnalités →</a>
+  </div>
+
+  <div class="books-visual">
+    <div class="book book1">
+      <div class="book-spine"></div>
+      <div class="book-lines">
+        <div class="book-line medium"></div>
+        <div class="book-line short"></div>
+        <div class="book-line medium"></div>
+      </div>
+    </div>
+    <div class="book book2">
+      <div class="book-spine"></div>
+      <div class="book-lines">
+        <div class="book-line medium"></div>
+        <div class="book-line short"></div>
+        <div class="book-line medium"></div>
+        <div class="book-line short"></div>
+      </div>
+    </div>
+    <div class="book book3">
+      <div class="book-spine"></div>
+      <div class="book-lines">
+        <div class="book-line medium"></div>
+        <div class="book-line short"></div>
+        <div class="book-line medium"></div>
+      </div>
+    </div>
+    <div class="books-shadow"></div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="section" id="features">
+  <p class="section-label" data-fr="Fonctionnalités" data-en="Features">Fonctionnalités</p>
+  <h2 class="section-title" data-fr="Tout ce dont tu as besoin pour lire mieux." data-en="Everything you need to read better.">Tout ce dont tu as besoin pour lire mieux.</h2>
+
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="feature-icon icon-orange">📚</div>
+      <h3 data-fr="Bibliothèque organisée" data-en="Organised library">Bibliothèque organisée</h3>
+      <p data-fr="Ajoute des livres en scannant le code-barres ISBN ou en cherchant par titre. Organise tout dans des étagères personnalisées." data-en="Add books by scanning the ISBN barcode or searching by title. Organise everything in custom shelves.">Ajoute des livres en scannant le code-barres ISBN ou en cherchant par titre. Organise tout dans des étagères personnalisées.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon icon-blue">📖</div>
+      <h3 data-fr="Suivi de progression" data-en="Progress tracking">Suivi de progression</h3>
+      <p data-fr="Enregistre tes sessions de lecture page par page. Visualise ta progression et maintiens ton streak quotidien." data-en="Log your reading sessions page by page. Visualise your progress and maintain your daily streak.">Enregistre tes sessions de lecture page par page. Visualise ta progression et maintiens ton streak quotidien.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon icon-yellow">🏆</div>
+      <h3 data-fr="Achievements & objectifs" data-en="Achievements & goals">Achievements & objectifs</h3>
+      <p data-fr="Définis un objectif de lecture annuel ou mensuel. Débloque des achievements au fil de ta progression." data-en="Set an annual or monthly reading goal. Unlock achievements as you progress.">Définis un objectif de lecture annuel ou mensuel. Débloque des achievements au fil de ta progression.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon icon-purple">📊</div>
+      <h3 data-fr="Statistiques détaillées" data-en="Detailed statistics">Statistiques détaillées</h3>
+      <p data-fr="Streak, pages lues, vitesse de lecture, genres préférés — tout est suivi et visualisé avec de beaux graphiques." data-en="Streak, pages read, reading speed, favourite genres — all tracked and visualised with beautiful charts.">Streak, pages lues, vitesse de lecture, genres préférés — tout est suivi et visualisé avec de beaux graphiques.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon icon-green">🗄️</div>
+      <h3 data-fr="Étagères personnalisées" data-en="Custom shelves">Étagères personnalisées</h3>
+      <p data-fr="Crée des collections thématiques, ajoute des livres d'un appui long et retrouve-les instantanément." data-en="Create themed collections, add books with a long press and find them instantly.">Crée des collections thématiques, ajoute des livres d'un appui long et retrouve-les instantanément.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon icon-teal">☁️</div>
+      <h3 data-fr="Synchronisation cloud" data-en="Cloud sync">Synchronisation cloud</h3>
+      <p data-fr="Ton compte est synchronisé sur tous tes appareils grâce à Firebase. Retrouve ta bibliothèque partout." data-en="Your account syncs across all your devices via Firebase. Access your library anywhere.">Ton compte est synchronisé sur tous tes appareils grâce à Firebase. Retrouve ta bibliothèque partout.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PREMIUM -->
+<div class="premium-section">
+  <div class="premium-inner">
+    <div>
+      <p class="section-label" style="color: rgba(255,255,255,0.5)" data-fr="Premium" data-en="Premium">Premium</p>
+      <h2><span data-fr="Passe au niveau <em>supérieur.</em>" data-en="Take it to the <em>next level.</em>">Passe au niveau <em>supérieur.</em></span></h2>
+      <p data-fr="Débloque toutes les fonctionnalités et transforme vraiment ta façon de lire." data-en="Unlock all features and truly transform the way you read.">Débloque toutes les fonctionnalités et transforme vraiment ta façon de lire.</p>
+      <ul class="premium-list">
+        <li data-fr="Bibliothèque illimitée" data-en="Unlimited library">Bibliothèque illimitée</li>
+        <li data-fr="Notes personnelles illimitées" data-en="Unlimited personal notes">Notes personnelles illimitées</li>
+        <li data-fr="Statistiques avancées et graphiques" data-en="Advanced stats and charts">Statistiques avancées et graphiques</li>
+        <li data-fr="Export CSV de ta bibliothèque" data-en="CSV export of your library">Export CSV de ta bibliothèque</li>
+        <li data-fr="Accès prioritaire aux nouvelles fonctions" data-en="Priority access to new features">Accès prioritaire aux nouvelles fonctions</li>
+      </ul>
+    </div>
+    <div class="premium-pricing">
+      <div class="price-card featured">
+        <p class="label" data-fr="ACCÈS À VIE" data-en="LIFETIME ACCESS">ACCÈS À VIE</p>
+        <p class="price">29,99€</p>
+        <p class="period" data-fr="Un seul paiement, pour toujours" data-en="One-time payment, forever">Un seul paiement, pour toujours</p>
+      </div>
+      <div class="price-card">
+        <p class="label" data-fr="MENSUEL" data-en="MONTHLY">MENSUEL</p>
+        <p class="price">1,99€</p>
+        <p class="period" data-fr="Par mois, résiliable à tout moment" data-en="Per month, cancel anytime">Par mois, résiliable à tout moment</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <a href="#" class="footer-logo">BookTracker</a>
+  <nav class="footer-links">
+    <a href="privacy-policy.html" data-fr="Politique de confidentialité" data-en="Privacy Policy">Politique de confidentialité</a>
+    <a href="#" data-fr="Support" data-en="Support">Support</a>
+    <a href="https://apps.apple.com" data-fr="App Store" data-en="App Store">App Store</a>
+  </nav>
+  <p class="footer-copy">© 2026 Martin Lecué. <span data-fr="Tous droits réservés." data-en="All rights reserved.">Tous droits réservés.</span></p>
+</footer>
+
+<script>
+  let currentLang = 'fr';
+  function setLang(lang) {
+    currentLang = lang;
+    document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+    document.querySelector(`.lang-btn[onclick="setLang('${lang}')"]`).classList.add('active');
+    document.documentElement.lang = lang;
+    document.querySelectorAll('[data-fr]').forEach(el => {
+      const text = el.getAttribute('data-' + lang);
+      if (text) el.innerHTML = text;
+    });
+  }
+</script>
+</body>
+</html>
