@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy Policy — BookTracker App</title>
+<meta name="description" content="BookTracker App — Politique de confidentialité / Privacy Policy">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;1,9..144,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sky: #daeeff;
+    --sky2: #b8d9f7;
+    --orange: #FF6B35;
+    --dark: #0d1b2e;
+    --mid: #2a4a6e;
+    --muted: #5a7a9e;
+    --white: #ffffff;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: linear-gradient(160deg, var(--sky) 0%, var(--sky2) 100%);
+    min-height: 100vh; color: var(--dark);
+  }
+
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 48px;
+    background: rgba(218, 238, 255, 0.72);
+    backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255,255,255,0.5);
+  }
+  .nav-logo {
+    font-family: 'Fraunces', serif; font-weight: 700; font-size: 20px;
+    color: var(--dark); text-decoration: none;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .nav-logo .dot { width: 10px; height: 10px; background: var(--orange); border-radius: 50%; }
+  .lang-toggle {
+    display: flex; align-items: center; gap: 4px;
+    background: rgba(255,255,255,0.6); border-radius: 100px;
+    padding: 4px; border: none; cursor: pointer;
+  }
+  .lang-btn {
+    padding: 5px 12px; border-radius: 100px; border: none;
+    font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500;
+    cursor: pointer; transition: all .2s;
+    background: transparent; color: var(--muted);
+  }
+  .lang-btn.active { background: var(--white); color: var(--dark); box-shadow: 0 1px 4px rgba(0,0,0,.08); }
+
+  .page-wrap {
+    max-width: 760px; margin: 0 auto;
+    padding: 140px 32px 100px;
+  }
+
+  .back-link {
+    display: inline-flex; align-items: center; gap: 8px;
+    color: var(--muted); font-size: 14px; text-decoration: none;
+    margin-bottom: 48px; transition: color .2s;
+  }
+  .back-link:hover { color: var(--dark); }
+  .back-link svg { width: 16px; height: 16px; }
+
+  .page-header { margin-bottom: 64px; }
+  .page-header .eyebrow {
+    font-size: 12px; font-weight: 500; letter-spacing: .12em;
+    text-transform: uppercase; color: var(--orange); margin-bottom: 16px;
+  }
+  .page-header h1 {
+    font-family: 'Fraunces', serif; font-size: clamp(40px, 6vw, 64px);
+    font-weight: 700; line-height: 1.1; color: var(--dark);
+    margin-bottom: 20px;
+  }
+  .page-header .meta {
+    font-size: 14px; color: var(--muted);
+    display: flex; gap: 24px; flex-wrap: wrap;
+  }
+
+  .content-card {
+    background: rgba(255,255,255,0.65);
+    border: 1px solid rgba(255,255,255,0.9);
+    border-radius: 24px; padding: 56px;
+    backdrop-filter: blur(12px);
+  }
+
+  .section { margin-bottom: 48px; }
+  .section:last-child { margin-bottom: 0; }
+
+  .section h2 {
+    font-family: 'Fraunces', serif; font-weight: 700;
+    font-size: 22px; color: var(--dark); margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1.5px solid rgba(13,27,46,.08);
+  }
+  .section p {
+    font-size: 15px; color: var(--mid); line-height: 1.8;
+    margin-bottom: 14px;
+  }
+  .section p:last-child { margin-bottom: 0; }
+  .section ul {
+    list-style: none; margin: 12px 0 14px;
+  }
+  .section ul li {
+    font-size: 15px; color: var(--mid); line-height: 1.7;
+    padding: 6px 0 6px 24px; position: relative;
+  }
+  .section ul li::before {
+    content: ''; position: absolute; left: 0; top: 14px;
+    width: 7px; height: 7px; border-radius: 50%;
+    background: var(--orange);
+  }
+  .section a { color: var(--orange); text-decoration: none; }
+  .section a:hover { text-decoration: underline; }
+
+  .highlight-box {
+    background: rgba(255,107,53,.06);
+    border: 1px solid rgba(255,107,53,.15);
+    border-radius: 14px; padding: 20px 24px; margin: 20px 0;
+  }
+  .highlight-box p { color: var(--mid); font-size: 14px; line-height: 1.7; margin: 0; }
+
+  footer {
+    padding: 48px 48px 40px;
+    display: flex; align-items: center; justify-content: space-between;
+    border-top: 1px solid rgba(255,255,255,0.5); flex-wrap: wrap; gap: 20px;
+  }
+  footer .footer-logo { font-family: 'Fraunces', serif; font-weight: 700; font-size: 18px; color: var(--dark); text-decoration: none; }
+  footer .footer-links { display: flex; gap: 32px; }
+  footer .footer-links a { font-size: 14px; color: var(--muted); text-decoration: none; transition: color .2s; }
+  footer .footer-links a:hover { color: var(--dark); }
+  footer .footer-copy { font-size: 13px; color: var(--muted); }
+
+  .lang-section { display: none; }
+  .lang-section.active { display: block; }
+
+  @media (max-width: 768px) {
+    nav { padding: 16px 20px; }
+    .page-wrap { padding: 120px 20px 80px; }
+    .content-card { padding: 32px 24px; }
+    footer { flex-direction: column; align-items: flex-start; padding: 40px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">
+    <span class="dot"></span>
+    BookTracker
+  </a>
+  <div class="lang-toggle">
+    <button class="lang-btn active" onclick="setLang('fr')">FR</button>
+    <button class="lang-btn" onclick="setLang('en')">EN</button>
+  </div>
+</nav>
+
+<div class="page-wrap">
+  <a href="index.html" class="back-link">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+    <span id="back-text">Retour</span>
+  </a>
+
+  <!-- VERSION FRANÇAISE -->
+  <div id="lang-fr" class="lang-section active">
+    <div class="page-header">
+      <p class="eyebrow">Légal</p>
+      <h1>Politique de confidentialité</h1>
+      <div class="meta">
+        <span>BookTracker App</span>
+        <span>Dernière mise à jour : 3 avril 2026</span>
+      </div>
+    </div>
+
+    <div class="content-card">
+      <div class="section">
+        <h2>Introduction</h2>
+        <p>Bienvenue sur BookTracker App ("l'Application"). Cette politique de confidentialité explique comment nous collectons, utilisons et protégeons vos informations personnelles lorsque vous utilisez notre application.</p>
+        <p>En utilisant BookTracker, vous acceptez les pratiques décrites dans cette politique. Si vous n'êtes pas d'accord, veuillez ne pas utiliser l'Application.</p>
+        <div class="highlight-box">
+          <p><strong>En résumé :</strong> Nous collectons uniquement ce dont nous avons besoin pour faire fonctionner l'app. Nous ne vendons jamais vos données à des tiers.</p>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2>Informations que nous collectons</h2>
+        <p>Nous collectons les catégories d'informations suivantes :</p>
+        <ul>
+          <li><strong>Informations de compte</strong> — Adresse email et nom d'affichage, fournis lors de l'inscription via Firebase Authentication.</li>
+          <li><strong>Données de bibliothèque</strong> — Les livres que vous ajoutez, vos statuts de lecture, vos notes, vos évaluations et votre progression.</li>
+          <li><strong>Sessions de lecture</strong> — Vos sessions enregistrées (pages lues, durée, date).</li>
+          <li><strong>Objectifs de lecture</strong> — Les objectifs que vous définissez dans l'application.</li>
+          <li><strong>Étagères</strong> — Les collections personnalisées que vous créez.</li>
+        </ul>
+        <p>Nous ne collectons pas : votre localisation, vos contacts, vos photos, ou toute autre donnée sensible non listée ici.</p>
+      </div>
+
+      <div class="section">
+        <h2>Comment nous utilisons vos informations</h2>
+        <p>Vos données sont utilisées exclusivement pour :</p>
+        <ul>
+          <li>Synchroniser votre bibliothèque entre vos appareils</li>
+          <li>Afficher vos statistiques et votre progression de lecture</li>
+          <li>Vous permettre de vous connecter et d'accéder à votre compte</li>
+          <li>Améliorer les performances et l'expérience de l'application</li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <h2>Services tiers</h2>
+        <p>BookTracker utilise les services tiers suivants, chacun disposant de sa propre politique de confidentialité :</p>
+        <ul>
+          <li><strong>Firebase (Google)</strong> — Authentification et synchronisation des données. <a href="https://firebase.google.com/support/privacy" target="_blank">Politique Firebase</a></li>
+          <li><strong>RevenueCat</strong> — Gestion des achats in-app et abonnements. <a href="https://www.revenuecat.com/privacy" target="_blank">Politique RevenueCat</a></li>
+          <li><strong>Google Books API</strong> — Recherche et informations sur les livres. <a href="https://policies.google.com/privacy" target="_blank">Politique Google</a></li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <h2>Stockage et sécurité des données</h2>
+        <p>Vos données sont stockées de manière sécurisée sur les serveurs de Firebase (Google Cloud). Nous appliquons des mesures de sécurité standards pour protéger vos informations contre tout accès non autorisé, altération ou divulgation.</p>
+        <p>Les données sont conservées tant que votre compte est actif. En cas de suppression de votre compte, vos données sont supprimées dans un délai de 30 jours.</p>
+      </div>
+
+      <div class="section">
+        <h2>Achats in-app</h2>
+        <p>BookTracker propose des achats in-app (abonnement mensuel et accès à vie). Ces transactions sont traitées par Apple via l'App Store et RevenueCat. Nous ne stockons jamais vos informations de paiement.</p>
+      </div>
+
+      <div class="section">
+        <h2>Vos droits</h2>
+        <p>Vous disposez des droits suivants concernant vos données :</p>
+        <ul>
+          <li>Droit d'accès à vos données personnelles</li>
+          <li>Droit de rectification des données inexactes</li>
+          <li>Droit à l'effacement de vos données ("droit à l'oubli")</li>
+          <li>Droit à la portabilité de vos données (export CSV disponible dans l'app)</li>
+        </ul>
+        <p>Pour exercer ces droits, contactez-nous à l'adresse ci-dessous.</p>
+      </div>
+
+      <div class="section">
+        <h2>Mineurs</h2>
+        <p>BookTracker n'est pas destiné aux enfants de moins de 13 ans. Nous ne collectons pas sciemment de données personnelles auprès de mineurs. Si vous pensez qu'un mineur nous a fourni des données, contactez-nous immédiatement.</p>
+      </div>
+
+      <div class="section">
+        <h2>Modifications de cette politique</h2>
+        <p>Nous pouvons mettre à jour cette politique de confidentialité à tout moment. Les modifications seront publiées sur cette page avec une date de mise à jour actualisée. Nous vous encourageons à consulter cette page régulièrement.</p>
+      </div>
+
+      <div class="section">
+        <h2>Contact</h2>
+        <p>Pour toute question concernant cette politique de confidentialité ou vos données personnelles, contactez-nous :</p>
+        <p><strong>Martin Lecué</strong><br>
+        Email : <a href="mailto:contact@martinlecue.com">contact@martinlecue.com</a><br>
+        Site : <a href="https://martinlecue.github.io/booktracker">martinlecue.github.io/booktracker</a></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- VERSION ANGLAISE -->
+  <div id="lang-en" class="lang-section">
+    <div class="page-header">
+      <p class="eyebrow">Legal</p>
+      <h1>Privacy Policy</h1>
+      <div class="meta">
+        <span>BookTracker App</span>
+        <span>Last updated: April 3, 2026</span>
+      </div>
+    </div>
+
+    <div class="content-card">
+      <div class="section">
+        <h2>Introduction</h2>
+        <p>Welcome to BookTracker App ("the App"). This privacy policy explains how we collect, use and protect your personal information when you use our application.</p>
+        <p>By using BookTracker, you agree to the practices described in this policy. If you disagree, please do not use the App.</p>
+        <div class="highlight-box">
+          <p><strong>In short:</strong> We only collect what we need to run the app. We never sell your data to third parties.</p>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2>Information we collect</h2>
+        <p>We collect the following categories of information:</p>
+        <ul>
+          <li><strong>Account information</strong> — Email address and display name, provided when signing up via Firebase Authentication.</li>
+          <li><strong>Library data</strong> — Books you add, your reading statuses, notes, ratings and progress.</li>
+          <li><strong>Reading sessions</strong> — Your logged sessions (pages read, duration, date).</li>
+          <li><strong>Reading goals</strong> — The goals you set in the application.</li>
+          <li><strong>Shelves</strong> — The custom collections you create.</li>
+        </ul>
+        <p>We do not collect: your location, contacts, photos, or any other sensitive data not listed here.</p>
+      </div>
+
+      <div class="section">
+        <h2>How we use your information</h2>
+        <p>Your data is used exclusively to:</p>
+        <ul>
+          <li>Sync your library across your devices</li>
+          <li>Display your reading statistics and progress</li>
+          <li>Allow you to sign in and access your account</li>
+          <li>Improve the performance and experience of the app</li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <h2>Third-party services</h2>
+        <p>BookTracker uses the following third-party services, each with their own privacy policy:</p>
+        <ul>
+          <li><strong>Firebase (Google)</strong> — Authentication and data synchronisation. <a href="https://firebase.google.com/support/privacy" target="_blank">Firebase Policy</a></li>
+          <li><strong>RevenueCat</strong> — In-app purchase and subscription management. <a href="https://www.revenuecat.com/privacy" target="_blank">RevenueCat Policy</a></li>
+          <li><strong>Google Books API</strong> — Book search and information. <a href="https://policies.google.com/privacy" target="_blank">Google Policy</a></li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <h2>Data storage and security</h2>
+        <p>Your data is stored securely on Firebase servers (Google Cloud). We apply standard security measures to protect your information against unauthorised access, alteration or disclosure.</p>
+        <p>Data is retained for as long as your account is active. If you delete your account, your data is deleted within 30 days.</p>
+      </div>
+
+      <div class="section">
+        <h2>In-app purchases</h2>
+        <p>BookTracker offers in-app purchases (monthly subscription and lifetime access). These transactions are processed by Apple via the App Store and RevenueCat. We never store your payment information.</p>
+      </div>
+
+      <div class="section">
+        <h2>Your rights</h2>
+        <p>You have the following rights regarding your data:</p>
+        <ul>
+          <li>Right to access your personal data</li>
+          <li>Right to rectify inaccurate data</li>
+          <li>Right to erasure of your data ("right to be forgotten")</li>
+          <li>Right to data portability (CSV export available in-app)</li>
+        </ul>
+        <p>To exercise these rights, contact us at the address below.</p>
+      </div>
+
+      <div class="section">
+        <h2>Minors</h2>
+        <p>BookTracker is not intended for children under 13. We do not knowingly collect personal data from minors. If you believe a minor has provided us with data, contact us immediately.</p>
+      </div>
+
+      <div class="section">
+        <h2>Changes to this policy</h2>
+        <p>We may update this privacy policy at any time. Changes will be posted on this page with an updated date. We encourage you to review this page regularly.</p>
+      </div>
+
+      <div class="section">
+        <h2>Contact</h2>
+        <p>For any questions about this privacy policy or your personal data, contact us:</p>
+        <p><strong>Martin Lecué</strong><br>
+        Email: <a href="mailto:contact@martinlecue.com">contact@martinlecue.com</a><br>
+        Website: <a href="https://martinlecue.github.io/booktracker">martinlecue.github.io/booktracker</a></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <a href="index.html" class="footer-logo">BookTracker</a>
+  <nav class="footer-links">
+    <a href="index.html" id="footer-home">Accueil</a>
+    <a href="https://apps.apple.com">App Store</a>
+  </nav>
+  <p class="footer-copy">© 2026 Martin Lecué.</p>
+</footer>
+
+<script>
+  function setLang(lang) {
+    document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+    document.querySelector(`.lang-btn[onclick="setLang('${lang}')"]`).classList.add('active');
+    document.documentElement.lang = lang;
+    document.querySelectorAll('.lang-section').forEach(s => s.classList.remove('active'));
+    document.getElementById('lang-' + lang).classList.add('active');
+    document.getElementById('back-text').textContent = lang === 'fr' ? 'Retour' : 'Back';
+    document.getElementById('footer-home').textContent = lang === 'fr' ? 'Accueil' : 'Home';
+  }
+</script>
+</body>
+</html>
