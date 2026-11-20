@@ -425,6 +425,8 @@ def main():
 <p><a class="btn-mail" href="/">BookTracker</a></p>
 </main></body></html>
 """, encoding="utf-8")
+    # Vérification Google Search Console (ne pas supprimer).
+    (OUT / "google48537651521c34e2.html").write_text("google-site-verification: google48537651521c34e2.html", encoding="utf-8")
     (OUT / "robots.txt").write_text(f"User-agent: *\nAllow: /\nSitemap: {SITE_URL}/sitemap.xml\n", encoding="utf-8")
     urls = "".join(f"<url><loc>{url(l, p)}</loc></url>" for l in ("en", "fr") for p in PAGES)
     (OUT / "sitemap.xml").write_text(
