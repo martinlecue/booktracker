@@ -1,0 +1,7 @@
+# GitHub Pages ne sert plus que les redirections vers le nouveau site.
+exclude:
+  - public
+  - build.py
+  - deploy.sh
+  - firebase.json
+  - README.md

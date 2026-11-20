@@ -1,0 +1,76 @@
+{
+  "hosting": {
+    "site": "booktracker-reader",
+    "public": "public",
+    "ignore": [
+      "firebase.json",
+      "**/.*"
+    ],
+    "cleanUrls": false,
+    "redirects": [
+      {
+        "source": "/privacy-policy",
+        "destination": "/privacy-policy.html",
+        "type": 301
+      },
+      {
+        "source": "/support",
+        "destination": "/support.html",
+        "type": 301
+      },
+      {
+        "source": "/fr/privacy-policy",
+        "destination": "/fr/privacy-policy.html",
+        "type": 301
+      },
+      {
+        "source": "/fr/support",
+        "destination": "/fr/support.html",
+        "type": 301
+      }
+    ],
+    "headers": [
+      {
+        "source": "**",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "public, max-age=0, must-revalidate"
+          }
+        ]
+      },
+      {
+        "source": "/assets/img/**",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "public, max-age=604800"
+          }
+        ]
+      },
+      {
+        "source": "/assets/*.css",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "public, max-age=3600"
+          }
+        ]
+      },
+      {
+        "source": "**",
+        "headers": [
+          {
+            "key": "X-Content-Type-Options",
+            "value": "nosniff"
+          },
+          {
+            "key": "Referrer-Policy",
+            "value": "strict-origin-when-cross-origin"
+          }
+        ]
+      }
+    ],
+    "trailingSlash": true
+  }
+}

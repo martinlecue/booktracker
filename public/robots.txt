@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://booktracker-reader.web.app/sitemap.xml
