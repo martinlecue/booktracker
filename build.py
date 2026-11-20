@@ -8,7 +8,7 @@ from pathlib import Path
 from html import escape
 
 SITE_URL = "https://booktracker-reader.web.app"  # adresse Firebase Hosting, sans / final
-CONTACT = "martin.lecue@gmail.com"
+CONTACT = "mail@martin-lecue.site"
 APP_ID = "6761607240"
 APPSTORE = f"https://apps.apple.com/app/apple-store/id{APP_ID}?pt=128656298&ct=website&mt=8"
 YEAR = 2026
