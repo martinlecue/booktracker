@@ -298,7 +298,7 @@ def layout(lang, page, title, desc, body, robots_extra=""):
 <meta name="twitter:card" content="summary">
 <link rel="icon" type="image/png" href="{up}favicon.png">
 <link rel="apple-touch-icon" href="{up}apple-touch-icon.png">
-<link rel="stylesheet" href="{up}assets/style.css">
+<link rel="stylesheet" href="{up}assets/style.css?v=2">
 {pref_js}
 </head>
 <body>
@@ -418,7 +418,7 @@ def main():
     (OUT / "404.html").write_text(f"""<!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Page not found — BookTracker</title><meta name="robots" content="noindex">
-<link rel="icon" type="image/png" href="/favicon.png"><link rel="stylesheet" href="/assets/style.css"></head>
+<link rel="icon" type="image/png" href="/favicon.png"><link rel="stylesheet" href="/assets/style.css?v=2"></head>
 <body><main class="doc" style="text-align:center;padding-top:96px">
 <img src="/assets/img/icon-256.png" alt="" width="84" height="84" style="margin:0 auto 20px;border-radius:20px">
 <h1>Page not found</h1><p class="lead" style="margin:0 auto 24px">This page doesn't exist (anymore).<br><span lang="fr">Cette page n'existe pas (ou plus).</span></p>

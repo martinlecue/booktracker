@@ -81,8 +81,8 @@ h1 { font-family: var(--round); font-weight: 800; font-size: clamp(40px, 6.4vw, 
 .appstore small { display: block; font-size: 11px; line-height: 1.1; opacity: .85; }
 .appstore strong { display: block; font-size: 19px; line-height: 1.15; font-weight: 600; letter-spacing: -.01em; }
 .note { font-size: 14px; color: var(--muted); }
-.hero-shot { justify-self: center; width: min(340px, 80vw); }
-.hero-shot img { border-radius: 28px; box-shadow: 0 30px 60px -20px rgba(40, 20, 120, .45); width: 100%; height: auto; aspect-ratio: 1320 / 2100; object-fit: cover; object-position: 50% 100%; }
+.hero-shot { justify-self: center; width: min(330px, 78vw); }
+.hero-shot img { border-radius: 28px; box-shadow: 0 30px 60px -20px rgba(40, 20, 120, .45); width: 100%; height: auto; aspect-ratio: 598 / 1300; }
 
 /* Sections */
 section { padding: 64px 0; }
