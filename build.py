@@ -82,7 +82,7 @@ T = {
         # Privacy
         "pp_title": "Privacy Policy",
         "pp_desc": "How BookTracker collects, uses and protects your personal data.",
-        "pp_updated": "Last updated: November 20, 2026",
+        "pp_updated": "Last updated: November 21, 2026",
         "pp_html": """
 <h2>Introduction</h2>
 <p>This privacy policy explains how BookTracker (“the App”), published by Martin Le Cué, collects, uses and protects your personal information.</p>
@@ -90,14 +90,15 @@ T = {
 
 <h2>Information we collect</h2>
 <ul>
-<li><strong>Account information</strong>: email address and display name, provided when you sign up through Firebase Authentication (email or Sign in with Apple).</li>
+<li><strong>Account information</strong>: email address and display name, provided when you sign up through Firebase Authentication (email or Sign in with Apple). If you continue without an account, an anonymous identifier is created instead and no email address is asked for.</li>
 <li><strong>Library data</strong>: the books you add, reading statuses, notes, ratings, reviews and progress.</li>
 <li><strong>Reading sessions</strong>: pages read, duration and date of each session.</li>
 <li><strong>Goals, shelves and achievements</strong> you create or earn in the App.</li>
-<li><strong>Social features (optional)</strong>: if you choose a username and add reading buddies, your username and your reading activity (book started, pages read, book finished) are visible to the friends you connect with.</li>
-<li><strong>Creator code (optional)</strong>: if you enter a creator's code, it is attached to your purchases so that creator can be thanked.</li>
+<li><strong>Social features (optional)</strong>: if you choose a username and add reading buddies, your username and your reading activity (book started, pages read, book finished) are visible to the friends you connect with. Your username can be searched by other users so they can add you.</li>
+<li><strong>Creator code (optional)</strong>: if you enter a creator's code, it is attached to your purchases (through RevenueCat) so that creator can be thanked.</li>
+<li><strong>Messages you send us</strong>: if you write to us (feedback or support), we receive your email address and your message, and use them only to reply.</li>
 </ul>
-<p>We do not collect your location, contacts or photos. The camera is only used, on your device, to scan a book's barcode.</p>
+<p>We do not collect your location, contacts or photos. The camera is only used, on your device, to scan a book's barcode. Reading reminders are local notifications scheduled on your device. The App contains no analytics or advertising tracker.</p>
 
 <h2>How we use your information</h2>
 <ul>
@@ -110,13 +111,13 @@ T = {
 <h2>Third-party services</h2>
 <ul>
 <li><strong>Firebase (Google)</strong>: authentication and data storage. <a href="https://firebase.google.com/support/privacy" rel="noopener">Firebase privacy</a></li>
-<li><strong>RevenueCat</strong>: in-app purchase and subscription management. <a href="https://www.revenuecat.com/privacy" rel="noopener">RevenueCat privacy</a></li>
+<li><strong>RevenueCat</strong>: in-app purchase and subscription management; it receives your anonymous account identifier and your purchase history. <a href="https://www.revenuecat.com/privacy" rel="noopener">RevenueCat privacy</a></li>
 <li><strong>Google Books API</strong> and <strong>Open Library</strong>: book search, covers and details. Only your search terms are sent. <a href="https://policies.google.com/privacy" rel="noopener">Google privacy</a> · <a href="https://archive.org/about/terms" rel="noopener">Open Library terms</a></li>
 </ul>
 <p>Some book pages include a link to buy the book on Amazon. These are affiliate links: if you tap one, Amazon may know you came from BookTracker, under Amazon's own privacy policy. No personal data is sent by the App.</p>
 
 <h2>Storage and security</h2>
-<p>Your data is stored on Firebase servers (Google Cloud). We use standard security measures to protect it against unauthorised access, alteration or disclosure.</p>
+<p>Your data is stored on Firebase servers (Google Cloud), located in the European Union. We use standard security measures to protect it against unauthorised access, alteration or disclosure.</p>
 <p>Data is kept as long as your account is active. You can delete your account at any time from your Profile in the App (“Delete my account”); your online data is then erased.</p>
 
 <h2>In-app purchases</h2>
@@ -188,7 +189,7 @@ T = {
         ],
         "pp_title": "Politique de confidentialité",
         "pp_desc": "Comment BookTracker collecte, utilise et protège tes données personnelles.",
-        "pp_updated": "Dernière mise à jour : 20 novembre 2026",
+        "pp_updated": "Dernière mise à jour : 21 novembre 2026",
         "pp_html": """
 <h2>Introduction</h2>
 <p>Cette politique de confidentialité explique comment BookTracker (« l'Application »), éditée par Martin Le Cué, collecte, utilise et protège vos informations personnelles.</p>
@@ -196,14 +197,15 @@ T = {
 
 <h2>Informations collectées</h2>
 <ul>
-<li><strong>Informations de compte</strong> : adresse e-mail et nom d'affichage, fournis à l'inscription via Firebase Authentication (e-mail ou Se connecter avec Apple).</li>
+<li><strong>Informations de compte</strong> : adresse e-mail et nom d'affichage, fournis à l'inscription via Firebase Authentication (e-mail ou Se connecter avec Apple). Si vous continuez sans compte, un identifiant anonyme est créé à la place et aucune adresse e-mail n'est demandée.</li>
 <li><strong>Données de bibliothèque</strong> : livres ajoutés, statuts de lecture, notes, évaluations, avis et progression.</li>
 <li><strong>Sessions de lecture</strong> : pages lues, durée et date de chaque session.</li>
 <li><strong>Objectifs, étagères et succès</strong> que vous créez ou obtenez dans l'Application.</li>
-<li><strong>Fonctions sociales (facultatives)</strong> : si vous choisissez un pseudo et ajoutez des amis lecteurs, votre pseudo et votre activité de lecture (livre commencé, pages lues, livre terminé) sont visibles par les amis avec qui vous êtes connecté.</li>
-<li><strong>Code créateur (facultatif)</strong> : si vous saisissez le code d'un créateur, il est associé à vos achats pour que ce créateur puisse être remercié.</li>
+<li><strong>Fonctions sociales (facultatives)</strong> : si vous choisissez un pseudo et ajoutez des amis lecteurs, votre pseudo et votre activité de lecture (livre commencé, pages lues, livre terminé) sont visibles par les amis avec qui vous êtes connecté. Votre pseudo peut être recherché par les autres utilisateurs pour qu'ils vous ajoutent.</li>
+<li><strong>Code créateur (facultatif)</strong> : si vous saisissez le code d'un créateur, il est associé à vos achats (via RevenueCat) pour que ce créateur puisse être remercié.</li>
+<li><strong>Messages que vous nous envoyez</strong> : si vous nous écrivez (avis ou assistance), nous recevons votre adresse e-mail et votre message, utilisés uniquement pour vous répondre.</li>
 </ul>
-<p>Nous ne collectons ni votre localisation, ni vos contacts, ni vos photos. L'appareil photo sert uniquement, sur votre appareil, à scanner le code-barres d'un livre.</p>
+<p>Nous ne collectons ni votre localisation, ni vos contacts, ni vos photos. L'appareil photo sert uniquement, sur votre appareil, à scanner le code-barres d'un livre. Les rappels de lecture sont des notifications locales programmées sur votre appareil. L'Application ne contient aucun outil de mesure d'audience ni de pistage publicitaire.</p>
 
 <h2>Utilisation des informations</h2>
 <ul>
@@ -216,13 +218,13 @@ T = {
 <h2>Services tiers</h2>
 <ul>
 <li><strong>Firebase (Google)</strong> : authentification et stockage des données. <a href="https://firebase.google.com/support/privacy" rel="noopener">Confidentialité Firebase</a></li>
-<li><strong>RevenueCat</strong> : gestion des achats intégrés et abonnements. <a href="https://www.revenuecat.com/privacy" rel="noopener">Confidentialité RevenueCat</a></li>
+<li><strong>RevenueCat</strong> : gestion des achats intégrés et abonnements ; il reçoit l'identifiant anonyme de votre compte et l'historique de vos achats. <a href="https://www.revenuecat.com/privacy" rel="noopener">Confidentialité RevenueCat</a></li>
 <li><strong>API Google Books</strong> et <strong>Open Library</strong> : recherche de livres, couvertures et informations. Seuls vos termes de recherche sont transmis. <a href="https://policies.google.com/privacy" rel="noopener">Confidentialité Google</a> · <a href="https://archive.org/about/terms" rel="noopener">Conditions Open Library</a></li>
 </ul>
 <p>Certaines fiches livres proposent un lien pour acheter le livre sur Amazon. Ce sont des liens d'affiliation : si vous en touchez un, Amazon peut savoir que vous venez de BookTracker, selon sa propre politique de confidentialité. L'Application ne transmet aucune donnée personnelle.</p>
 
 <h2>Stockage et sécurité</h2>
-<p>Vos données sont stockées sur les serveurs de Firebase (Google Cloud). Nous appliquons des mesures de sécurité standards pour les protéger contre tout accès non autorisé, altération ou divulgation.</p>
+<p>Vos données sont stockées sur les serveurs de Firebase (Google Cloud), situés dans l'Union européenne. Nous appliquons des mesures de sécurité standards pour les protéger contre tout accès non autorisé, altération ou divulgation.</p>
 <p>Les données sont conservées tant que votre compte est actif. Vous pouvez supprimer votre compte à tout moment depuis votre Profil dans l'Application (« Supprimer mon compte ») ; vos données en ligne sont alors effacées.</p>
 
 <h2>Achats intégrés</h2>
