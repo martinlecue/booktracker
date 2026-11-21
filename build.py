@@ -7,7 +7,8 @@ Les textes sont dans le dictionnaire T ci-dessous ; la mise en page dans les fon
 from pathlib import Path
 from html import escape
 
-SITE_URL = "https://booktracker-reader.web.app"  # adresse Firebase Hosting, sans / final
+SITE_URL = "https://booktracker.martin-lecue.site"  # adresse publique du site (domaine perso branché sur Firebase Hosting), sans / final
+SITE_HOST = SITE_URL.split("//", 1)[1]
 CONTACT = "mail@martin-lecue.site"
 APP_ID = "6761607240"
 APPSTORE = f"https://apps.apple.com/app/apple-store/id{APP_ID}?pt=128656298&ct=website&mt=8"
@@ -284,8 +285,10 @@ def layout(lang, page, title, desc, body, robots_extra=""):
 <title>{escape(title)}</title>
 <meta name="description" content="{escape(desc)}">
 <link rel="canonical" href="{url(lang, page)}">
+<script>if(/\.(web\.app|firebaseapp\.com)$/.test(location.hostname)){{location.replace("https://{SITE_HOST}"+location.pathname+location.search+location.hash);}}</script>
 {alt}
 <meta name="apple-itunes-app" content="app-id={APP_ID}">
+<meta name="msvalidate.01" content="07277EAEC65A68B22AFDDA81D904E2AE">
 <meta name="theme-color" content="#f6f5ff" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0e0d24" media="(prefers-color-scheme: dark)">
 <meta property="og:type" content="website">
