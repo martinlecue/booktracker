@@ -285,7 +285,7 @@ def layout(lang, page, title, desc, body, robots_extra=""):
 <title>{escape(title)}</title>
 <meta name="description" content="{escape(desc)}">
 <link rel="canonical" href="{url(lang, page)}">
-<script>if(/(firebaseapp\.com|martin-lecue\.site)$/.test(location.hostname)){{location.replace("https://{SITE_HOST}"+location.pathname+location.search+location.hash);}}</script>
+<script>if(/firebaseapp\.com$/.test(location.hostname)){{location.replace("https://{SITE_HOST}"+location.pathname+location.search+location.hash);}}</script>
 {alt}
 <meta name="apple-itunes-app" content="app-id={APP_ID}">
 <meta name="msvalidate.01" content="07277EAEC65A68B22AFDDA81D904E2AE">
